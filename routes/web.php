@@ -34,5 +34,6 @@ Route::post('/autonashriyot',[\App\Http\Controllers\AutoSearchController::class,
 Route::post('/automuallif',[\App\Http\Controllers\AutoSearchController::class,'muallif'])->name('muallifauto');
 Route::post('/autokitonturi',[\App\Http\Controllers\AutoSearchController::class,'kitob_turi'])->name('kitobturiauto');
 Route::post('/autojavon',[\App\Http\Controllers\AutoSearchController::class,'javon'])->name('javonauto');
+Route::post('/autosarlavha',[\App\Http\Controllers\AutoSearchController::class,'sarlavha'])->name('sarlavhaauto');
 
 

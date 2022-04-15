@@ -27,6 +27,25 @@ class AutoSearchController extends Controller
         }
 
     }
+    public function sarlavha(Request $request){
+        if ($request->get('query')){
+            $query=$request->get('query');
+            $data=DB::table('sarlavhas')
+                ->where('sarlavha', 'LIKE', '%' . $query . '%')
+                ->get();
+
+            $output='<ul class="list-group" style=" position:relative;z-index: 1">';
+            foreach ($data as $index=>$row){
+                if ($index==5){break;}
+                $output.='<li id="li_sarlavha" class="dropdown-item list-group-item">'.$row->sarlavha.'</li>';
+
+            }
+            $output.='</ul>';
+            echo $output;
+
+        }
+
+    }
     public function muallif(Request $request){
         if ($request->get('query')){
             $query=$request->get('query');

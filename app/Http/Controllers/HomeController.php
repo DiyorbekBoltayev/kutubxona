@@ -7,6 +7,7 @@ use App\Models\Kitob;
 use App\Models\KitobTuri;
 use App\Models\Muallif;
 use App\Models\Nashriyot;
+use App\Models\Sarlavha;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -19,8 +20,23 @@ class HomeController extends Controller
         $kitob=new Kitob();
         $kitob->local_id=$request->mahalliy_id;
         echo "mahalliy id yozildi <br>";
-        $kitob->sarlavha=$request->sarlavha;
+
         echo "sarlavha yozildi <br>";
+//sarlavha malumotlari tekshiriladi va yoziladi
+        $search=$request->sarlavha;
+        $sarlavhas=Sarlavha::where('sarlavha',"$search")->get();
+        if (count($sarlavhas)==1){
+            $kitob->sarlavha_id=$sarlavhas[0]['id'];
+//o'chirishim garak
+//
+            echo "yozilgan muallif id:".$sarlavhas[0]['id']."<br>";
+        }else{
+            $addsarlavha=new Sarlavha();
+            $addsarlavha->sarlavha=$request->sarlavha;
+            $addsarlavha->save();
+            $kitob->sarlavha_id=$addsarlavha['id'];
+            echo "yangi sarlavha yozildi <br>";
+        }
 //muallif ma'lumotlari tekshiriladi va yozildi
 
         $search=$request->muallif;

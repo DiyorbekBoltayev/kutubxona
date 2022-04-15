@@ -20,6 +20,7 @@
         <div class="form-floating mb-3">
             <input type="text" name="sarlavha" class="form-control" id="sarlavha" autocomplete="off"   required  placeholder="name@example.com">
             <label for="sarlavha">Sarlavha</label>
+            <div id="sarlavhalist" > </div>
         </div>
         <div class="form-floating mb-3">
             <input type="text" name="muallif" class="form-control" id="muallif"  autocomplete="off"   required placeholder="name@example.com">
@@ -85,6 +86,36 @@
 
                 }
             });
+            //sarlavha uchun
+
+            $('#sarlavha').keyup(function () {
+                var query=$(this).val();
+
+                if(query.length>2){
+
+                    var _token=$('input[name="_token"]').val();
+                    $.ajax({
+                        url:"{{route('sarlavhaauto')}}",
+                        method:"POST",
+                        data:{query:query,_token:_token},
+                        success:function (data) {
+
+                            $('#sarlavhalist').fadeIn();
+                            $('#sarlavhalist').html(data);
+
+
+                        }
+                    });
+
+
+                    $(document).on('click','#li_sarlavha',function () {
+                        $('#sarlavha').val($(this).text());
+                        $('#sarlavhalist').fadeOut();
+                    })
+
+                }
+            });
+
             //muallif uchun
             $('#muallif').keyup(function () {
                 var query=$(this).val();
