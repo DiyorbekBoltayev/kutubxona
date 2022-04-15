@@ -90,6 +90,8 @@ class HomeController extends Controller
         }
         $kitob->save();
         echo $kitob;
+
+        return redirect('/add')->with('message', 'Kitob muvaffaqqiyatli qo`shildi !');
     }
 
 }
