@@ -20,6 +20,8 @@ Route::get('/', function () {
 });
 Route::get('/add',[HomeController::class,'add'])->name('addbook');
 Route::post('/add',[HomeController::class,'add_books'])->name('add_books');
+Route::get('/borrow',[HomeController::class,'borrow'])->name('borrowbook');
+Route::get('/confirmborrow',[HomeController::class,'confirmborrow'])->name('confirmborrow');
 
 
 

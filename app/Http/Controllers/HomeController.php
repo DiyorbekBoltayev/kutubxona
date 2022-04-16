@@ -14,7 +14,12 @@ class HomeController extends Controller
 {
     public function add(){
         return view('add');
-
+    }
+    public function borrow(){
+        return view('borrow');
+    }
+    public function confirmborrow(){
+        return view('confirmborrow');
     }
     public function add_books(Request $request){
         $kitob=new Kitob();

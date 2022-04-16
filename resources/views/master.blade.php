@@ -23,7 +23,7 @@
                 <a class="nav-link " style="color: #990cdf" href="{{route('addbook')}}">Kitob qo'shish</a>
             </li>
             <li class="nav-item active btn fs-5">
-                <a class="nav-link text-primary" href="#">Kitob qo'shish</a>
+                <a class="nav-link text-primary" href="{{route('borrowbook')}}">Kitob berish</a>
             </li>
             <li class="nav-item active btn fs-5">
                 <a class="nav-link text-primary" href="#">Kitob qo'shish</a>
