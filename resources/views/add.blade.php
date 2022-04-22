@@ -14,8 +14,9 @@
 
         <form action="{{route('add_books')}}" method="post">
         <div class="form-floating mb-3">
-            <input type="number" name="mahalliy_id" class="form-control" id="mahalliy_raqam" autocomplete="off"   required  placeholder="name@example.com">
-            <label for="mahalliy_raqam">Mahalliy raqami</label>
+            <input type="number" name="mahalliy_id" class="form-control" id="mahalliy_id" autocomplete="off"   required  placeholder="name@example.com">
+            <label for="mahalliy_id">Mahalliy raqami</label>
+            <div id="mahalliyidlist" > </div>
         </div>
         <div class="form-floating mb-3">
             <input type="text" name="sarlavha" class="form-control" id="sarlavha" autocomplete="off"   required  placeholder="name@example.com">
@@ -58,12 +59,39 @@
             $(document).on('click','#mes1',function () {
                 $('#mes1').fadeOut();
             })
+            //mahalli id uchun
+            $('#mahalliy_id').keyup(function () {
+                var query=$(this).val();
+
+                if(query.length>0){
+
+                    var _token=$('input[name="_token"]').val();
+                    $.ajax({
+                        url:"{{route('mahalliyidauto')}}",
+                        method:"POST",
+                        data:{query:query,_token:_token},
+                        success:function (data) {
+
+                            $('#mahalliyidlist').fadeIn();
+                            $('#mahalliyidlist').html(data);
+
+
+                        }
+                    });
+
+                    $(document).on('click','#li_mahalliyid',function () {
+                        $('#mahalliy_id').val($(this).text());
+                        $('#mahalliyidlist').fadeOut();
+                    })
+
+                }
+            });
 
             //nashriyot uchun
             $('#nashriyot').keyup(function () {
                 var query=$(this).val();
 
-                if(query.length>2){
+                if(query.length>1){
 
                     var _token=$('input[name="_token"]').val();
                     $.ajax({
@@ -91,7 +119,7 @@
             $('#sarlavha').keyup(function () {
                 var query=$(this).val();
 
-                if(query.length>2){
+                if(query.length>0){
 
                     var _token=$('input[name="_token"]').val();
                     $.ajax({
@@ -120,7 +148,7 @@
             $('#muallif').keyup(function () {
                 var query=$(this).val();
 
-                if(query.length>2){
+                if(query.length>0){
 
                     var _token=$('input[name="_token"]').val();
                     $.ajax({

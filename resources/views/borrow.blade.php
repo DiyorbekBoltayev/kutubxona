@@ -35,8 +35,8 @@
                     <td>1777</td>
                     <td>Xamsa</td>
                     <td>Alisher Navoiy</td>
-                    <td>2-javon</td>
-                    <td><a href="" class="btn btn-secondary disabled" >Berilgan </a></td>
+                    <td class="text-danger">Berilgan</td>
+                    <td><a href="{{route('showborrower')}}" class="btn btn-secondary " >Berilgan </a></td>
                 </tr>
                 <tr>
                     <td>1227</td>
@@ -47,7 +47,6 @@
                 </tr>
             </table>
         </div>
-        <input type="submit" name="submit" class="form-control btn-outline-success" value="Barcha ma'lumotlarni saqlash" >
 
         {{csrf_field()}}
     </form>

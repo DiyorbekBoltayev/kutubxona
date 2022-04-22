@@ -2,16 +2,29 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Guruh;
 use App\Models\Javon;
 use App\Models\Kitob;
 use App\Models\KitobTuri;
 use App\Models\Muallif;
 use App\Models\Nashriyot;
 use App\Models\Sarlavha;
+use App\Models\Viloyat;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
+    public function home(){
+        return view('home');
+    }
+    public function useradd(){
+        $vil=Viloyat::all();
+        $guruh=Guruh::all();
+        return view('useradd',['viloyat'=>$vil,'guruh'=>$guruh]);
+    }
+    public function register(Request$request){
+        dd($request);
+    }
     public function add(){
         return view('add');
     }
@@ -20,6 +33,15 @@ class HomeController extends Controller
     }
     public function confirmborrow(){
         return view('confirmborrow');
+    }
+    public function showborrower(){
+        return view('showborrower');
+    }
+    public function muddat(){
+        return view('muddat');
+    }
+    public function statistika(){
+        return view('statistika');
     }
     public function add_books(Request $request){
         $kitob=new Kitob();

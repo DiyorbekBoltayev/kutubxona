@@ -20,16 +20,16 @@
     <div class="collapse navbar-collapse d-flex justify-content-end  " style="margin-right: 150px; font-size: large" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto ">
             <li class="nav-item active btn fs-5">
-                <a class="nav-link " style="color: #990cdf" href="{{route('addbook')}}">Kitob qo'shish</a>
+                <a class="nav-link " style="color:{{request()->routeIs('addbook') ? '#990cdf' : '#0d6efd' }} " href="{{route('addbook')}}">Kitob qo'shish</a>
             </li>
             <li class="nav-item active btn fs-5">
-                <a class="nav-link text-primary" href="{{route('borrowbook')}}">Kitob berish</a>
+                <a class="nav-link text-primary" style="color:{{request()->routeIs('borrow') ? '#990cdf' : '#0d6efd' }} " href="{{route('borrowbook')}}">Kitob berish</a>
             </li>
             <li class="nav-item active btn fs-5">
-                <a class="nav-link text-primary" href="#">Kitob qo'shish</a>
+                <a class="nav-link text-primary" href="{{route('muddat')}}">Muddati o'tganlar</a>
             </li>
             <li class="nav-item active btn fs-5">
-                <a class="nav-link text-primary" href="#">Kitob qo'shish</a>
+                <a class="nav-link text-primary" href="{{route('statistika')}}">Statistika</a>
             </li>
 
         </ul>
