@@ -35,20 +35,11 @@
                     Guruhlar
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenu2" style="font-size: 20px;">
-                    <li><a href="{{route('addbook')}}" class="dropdown-item" type="button">Kitob qo'shish</a></li>
-                    <li><a href="" class="dropdown-item" type="button">Kitoblar ro'yhati</a></li>
+                    <li><a href="{{route('add_gr')}}" class="dropdown-item" type="button">Guruh qo'shish</a></li>
+                    <li><a href="{{route('list_gr')}}" class="dropdown-item" type="button">Guruhlar ro'yhati</a></li>
                 </ul>
             </div>
 {{--            //javonlar--}}
-            <div class="dropdown "  >
-                <a href="" style="font-size: 20px;" class=" btn btn-outline-primary dropdown-toggle border-0" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
-                    Javonlar
-                </a>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenu2" style="font-size: 20px;">
-                    <li><a href="{{route('addbook')}}" class="dropdown-item" type="button">Javon qo'shish</a></li>
-                    <li><a href="" class="dropdown-item" type="button">Javonlar ro'yhati</a></li>
-                </ul>
-            </div>
             <li class="nav-item active btn fs-5">
                 <a class="nav-link text-primary" style="color:{{request()->routeIs('borrow') ? '#990cdf' : '#0d6efd' }} " href="{{route('borrowbook')}}">Kitob berish</a>
             </li>

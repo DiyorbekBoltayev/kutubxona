@@ -14,7 +14,50 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
+    public function delete_gr($id){
+        $gr=Guruh::find($id);
+        $gr->delete();
+        return redirect('/list_gr')->with('message', 'Guruh muvaffaqqiyatli o\'chirildi !');
+    }
+    public function add_gr(){
+        return view('guruhadd');
+    }
+    public function edit_gr($id){
+        $gr=Guruh::find($id);
+        return view('edit_gr',[
+            'gr'=>$gr
+        ]);
+    }
+    public function saqla_gr(Request $request){
+        $gr=$request->guruh;
+        $all=Guruh::all()->where('guruh',$gr);
+        if(count($all)>0){
+            return redirect()->back()->with('message', 'Bunday guruh mavjud !');
+        }
+        $t=new Guruh;
+        $t->guruh=$gr;
+        $t->save();
+        return redirect()->route('list_gr')->with('message', 'Yaratildi !');
+    }
+    public function update_gr(Request $request){
+        $id=$request->id;
+        $t=Guruh::find($id);
+        $gr=$request->guruh;
+        $all=Guruh::all()->where('guruh',$gr);
+        if(count($all)>0 && ($t->guruh != $gr)){
+            return redirect()->back()->with('message', 'Bunday guruh mavjud !');
+        }
 
+        $t->guruh=$gr;
+        $t->save();
+        return redirect()->route('list_gr')->with('message', 'Yangilandi !');
+    }
+    public function list_gr(){
+        $gr=Guruh::all();
+        return view('list_gr',[
+            'guruh'=>$gr
+        ]);
+    }
     public function deletebook($id){
         $book=Kitob::find($id);
         $book->delete();

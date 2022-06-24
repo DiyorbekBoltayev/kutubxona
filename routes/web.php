@@ -33,6 +33,13 @@ Route::get('editbook/{id}',[HomeController::class,'editbook'])->name('editbook')
 Route::post('editbook',[HomeController::class,'save_edit'])->name('save_edit');
 Route::get('deletebook/{id}',[HomeController::class,'deletebook'])->name('deletebook');
 
+Route::get('groupadd',[HomeController::class,'add_gr'])->name('add_gr');
+Route::post('groupadd',[HomeController::class,'saqla_gr'])->name('saqla_gr');
+Route::get('list_gr',[HomeController::class,'list_gr'])->name('list_gr');
+Route::get('edit_gr/{id}',[HomeController::class,'edit_gr'])->name('edit_gr');
+Route::get('delete_gr/{id}',[HomeController::class,'delete_gr'])->name('delete_gr');
+Route::post('update_gr',[HomeController::class,'update_gr'])->name('update_gr');
+
 Route::post('/autonashriyot',[\App\Http\Controllers\AutoSearchController::class,'nashriyot'])->name('nashriyotauto');
 Route::post('/automuallif',[\App\Http\Controllers\AutoSearchController::class,'muallif'])->name('muallifauto');
 Route::post('/autokitonturi',[\App\Http\Controllers\AutoSearchController::class,'kitob_turi'])->name('kitobturiauto');
