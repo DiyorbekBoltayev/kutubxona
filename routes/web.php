@@ -25,6 +25,7 @@ Route::get('/confirmborrow',[HomeController::class,'confirmborrow'])->name('conf
 Route::get('/showborrower',[HomeController::class,'showborrower'])->name('showborrower');
 Route::get('/muddat',[HomeController::class,'muddat'])->name('muddat');
 Route::get('/statistika',[HomeController::class,'statistika'])->name('statistika');
+Route::get('/foydalanuvchilar',[HomeController::class,'foydalanuvchilar'])->name('foydalanuvchilar');
 
 
 Route::post('/autonashriyot',[\App\Http\Controllers\AutoSearchController::class,'nashriyot'])->name('nashriyotauto');

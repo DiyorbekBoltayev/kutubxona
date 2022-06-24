@@ -6,7 +6,7 @@
         <input type="date" class="form-control input-group" style="width: 200px; height: 40px;border:1px solid #07294d " >
             <p class="m-3 text text-dark"> Sanadagi foydalanish tarixi</p>
         </div>
-        <button class="btn btn-primary">Pdf shakla chop etish</button>
+        <button class="btn btn-primary">Pdf shaklda chop etish</button>
         <button class="btn btn-success">Boshqa statistik amallarni ko'rsatish</button>
 
     </div>

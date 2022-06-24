@@ -17,6 +17,9 @@ class HomeController extends Controller
     public function home(){
         return view('home');
     }
+    public function foydalanuvchilar(){
+        return view('foydalanuvchilar');
+    }
     public function useradd(){
         $vil=Viloyat::all();
         $guruh=Guruh::all();
