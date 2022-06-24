@@ -27,6 +27,11 @@ Route::get('/muddat',[HomeController::class,'muddat'])->name('muddat');
 Route::get('/statistika',[HomeController::class,'statistika'])->name('statistika');
 Route::get('/foydalanuvchilar',[HomeController::class,'foydalanuvchilar'])->name('foydalanuvchilar');
 
+Route::get('/booklist',[HomeController::class,'list'])->name('booklist');
+Route::get('singlebook/{id}',[HomeController::class,'singlebook'])->name('singlebook');
+Route::get('editbook/{id}',[HomeController::class,'editbook'])->name('editbook');
+Route::post('editbook',[HomeController::class,'save_edit'])->name('save_edit');
+Route::get('deletebook/{id}',[HomeController::class,'deletebook'])->name('deletebook');
 
 Route::post('/autonashriyot',[\App\Http\Controllers\AutoSearchController::class,'nashriyot'])->name('nashriyotauto');
 Route::post('/automuallif',[\App\Http\Controllers\AutoSearchController::class,'muallif'])->name('muallifauto');

@@ -14,14 +14,41 @@
 <body>
 {{--    Navbar boshlandi --}}
 <nav class="navbar navbar-expand-lg navbar-light border-bottom border-primary " style="box-shadow: 0px 0px 5px 5px #929ff3; background-color: #f0f3f4">
-    <a class="navbar-brand m-2 mb-0 mt-0" href="{{url('/')}}"><img class="card-img" style="height:70px" src="https://i.pinimg.com/736x/a7/91/0c/a7910cf32f182c9ea34022abb7839980--library-logo-library-design.jpg" alt=""></a>
+    <a class="navbar-brand m-2 mb-0 mt-0" href="{{url('/')}}"><img class="card-img" style="height:50px" src="https://i.pinimg.com/736x/a7/91/0c/a7910cf32f182c9ea34022abb7839980--library-logo-library-design.jpg" alt=""></a>
 
 
     <div class="collapse navbar-collapse d-flex justify-content-end  " style="margin-right: 150px; font-size: large" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto ">
-            <li class="nav-item active btn fs-5">
-                <a class="nav-link " style="color:{{request()->routeIs('addbook') ? '#990cdf' : '#0d6efd' }} " href="{{route('addbook')}}">Kitob qo'shish</a>
-            </li>
+        <ul class="navbar-nav mr-auto d-flex align-items-center ">
+{{--            //kitoblar--}}
+            <div class="dropdown "  >
+                <a href="" style="font-size: 20px;" class=" btn btn-outline-primary dropdown-toggle border-0" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
+                    Kitoblar
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenu2" style="font-size: 20px;">
+                    <li><a href="{{route('addbook')}}" class="dropdown-item" type="button">Kitob qo'shish</a></li>
+                    <li><a href="{{route('booklist')}}" class="dropdown-item" type="button">Kitoblar ro'yhati</a></li>
+                </ul>
+            </div>
+{{--            //guruhlar--}}
+            <div class="dropdown "  >
+                <a href="" style="font-size: 20px;" class=" btn btn-outline-primary dropdown-toggle border-0" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
+                    Guruhlar
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenu2" style="font-size: 20px;">
+                    <li><a href="{{route('addbook')}}" class="dropdown-item" type="button">Kitob qo'shish</a></li>
+                    <li><a href="" class="dropdown-item" type="button">Kitoblar ro'yhati</a></li>
+                </ul>
+            </div>
+{{--            //javonlar--}}
+            <div class="dropdown "  >
+                <a href="" style="font-size: 20px;" class=" btn btn-outline-primary dropdown-toggle border-0" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
+                    Javonlar
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenu2" style="font-size: 20px;">
+                    <li><a href="{{route('addbook')}}" class="dropdown-item" type="button">Javon qo'shish</a></li>
+                    <li><a href="" class="dropdown-item" type="button">Javonlar ro'yhati</a></li>
+                </ul>
+            </div>
             <li class="nav-item active btn fs-5">
                 <a class="nav-link text-primary" style="color:{{request()->routeIs('borrow') ? '#990cdf' : '#0d6efd' }} " href="{{route('borrowbook')}}">Kitob berish</a>
             </li>

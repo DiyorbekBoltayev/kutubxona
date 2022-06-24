@@ -8,4 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Sarlavha extends Model
 {
     use HasFactory;
+    public function kitob(){
+        return $this->hasOne(Kitob::class);
+    }
 }
