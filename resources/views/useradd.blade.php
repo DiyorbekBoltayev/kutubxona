@@ -9,13 +9,13 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-    <title>@yield('title')</title>
+    <title>Kutubxona</title>
 </head>
 <body>
 
 <div class="w-100 d-flex justify-content-between align-items-center p-4" style="background: #07294d;; box-shadow: 0px 0px 5px 5px #07294d;" >
-    <h3 class="text-white">TATU UF kutubxonasidan foydalanish uchun ro'yhatdan o'tish sahifasi</h3>
-    <a class="btn btn-outline-warning" href="">Kutubxonachi sifatida kirish</a> </div>
+    <h3 class="text-white">Kutubxonadan foydalanish uchun ro'yhatdan o'tish sahifasi</h3>
+    <a class="btn btn-outline-warning" href="/login_1">Kutubxonachi sifatida kirish</a> </div>
 <div class="container mt-2" style="background: #ebefeb; box-shadow: 0px 5px 5px 5px #ebefeb">
     <h1 class="text-primary">Ma'lumotlarni kiriting</h1>
     <div>

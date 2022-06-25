@@ -23,4 +23,7 @@ class Kitob extends Model
     public function muallif(){
         return $this->belongsTo(Muallif::class,'muallif_id','id');
     }
+    public function holatim(){
+        return $this->belongsTo(Student::class,'holati','id');
+    }
 }

@@ -23,7 +23,9 @@ return new class extends Migration
             $table->integer('javon_id');
             $table->integer('nashriyot_id');
             $table->text('izoh')->default('Izohlar');
-            $table->boolean('holati')->default(true);
+            $table->integer('holati')->default(0);
+            $table->date('olgan')->nullable();
+            $table->date('berish')->nullable();
             $table->timestamps();
         });
     }

@@ -3,11 +3,15 @@
     <h1 class="text text-primary text-center">Statistika</h1>
     <div class="container m-3 d-flex align-items-center justify-content-between">
         <div class="d-flex align-items-center p-1  "  >
-        <input type="date" class="form-control input-group" style="width: 200px; height: 40px;border:1px solid #07294d " >
+            <form action="{{route('sarala')}}" method="post" class="d-flex align-items-center">
+                @csrf
+        <input type="date" name="sana" @if(isset($sana)) value="{{$sana}}"  @endif class="form-control input-group" style="width: 200px; height: 40px;border:1px solid #07294d " >
             <p class="m-3 text text-dark"> Sanadagi foydalanish tarixi</p>
+                <button type="submit" class="btn btn-outline-primary">Ko'rish</button>
+            </form>
         </div>
-        <button class="btn btn-primary">Pdf shaklda chop etish</button>
-        <button class="btn btn-success">Boshqa statistik amallarni ko'rsatish</button>
+        <button onclick="window.print()" class="btn btn-primary">Pdf shaklda chop etish</button>
+
 
     </div>
     <div class="container">
@@ -18,65 +22,28 @@
                 <th>Kitob Sarlavhasi</th>
                 <th>Kitob Muallifi</th>
                 <th>Harakat</th>
-                <th>Amal</th>
+                <th>Sana</th>
 
             </tr>
+            @forelse($data as $d)
             <tr>
-                <td>Otajonov Alisher Muxtor o'g'li</td>
-                <td>942-20</td>
-                <td>Xamsa</td>
-                <td>Alisher Navoiy</td>
+                <td>{{$d->st->ism}} {{$d->st->familya}}  {{$d->st->otasining_ismi}} </td>
+                <td>{{$d->st->guruh->guruh}}</td>
+                <td>{{$d->ktb->sarlavha->sarlavha}}</td>
+                <td>{{$d->ktb->muallif->muallif}}</td>
+                @if($d->holat==0)
                 <td class="text text-primary">Kitob olingan</td>
-                <td><a href="{{route('showborrower')}}" class="btn btn-outline-primary " >Ko'rish</a></td>
+                @else
+                    <td class="text text-success">Kitob qaytarilgan</td>
+
+                @endif
+{{--                <td><a href="{{route('showborrower',$d->ktb->id)}}" class="btn btn-outline-primary " >Ko'rish</a></td>--}}
+          <td>{{$d->sana}}</td>
             </tr>
-            <tr>
-                <td>Ruzimov Jasurbek Oybek o'g'li</td>
-                <td>942-20</td>
-                <td>Xamsa</td>
-                <td>Alisher Navoiy</td>
-                <td class="text text-success">Kitob qaytarilgan</td>
-                <td><a href="{{route('showborrower')}}" class="btn btn-outline-primary " >Ko'rish</a></td>
-            </tr>
-            <tr>
-                <td>Boltayev Diyorbek Tajimurat o'g'li</td>
-                <td>942-20</td>
-                <td>Xamsa</td>
-                <td>Alisher Navoiy</td>
-                <td class="text text-success">Kitob qaytarilgan</td>
-                <td><a href="{{route('showborrower')}}" class="btn btn-outline-primary " >Ko'rish</a></td>
-            </tr>
-            <tr>
-                <td>Xo'janiyozov Fayzulla Maqsud o'g'li</td>
-                <td>942-20</td>
-                <td>Xamsa</td>
-                <td>Alisher Navoiy</td>
-                <td class="text text-primary">Kitob olingan</td>
-                <td><a href="{{route('showborrower')}}" class="btn btn-outline-primary " >Ko'rish</a></td>
-            </tr>
-            <tr>
-                <td>Otajonov Alisher Muxtor o'g'li</td>
-                <td>942-20</td>
-                <td>Ilm olish sirlari</td>
-                <td>Imom Zarnujiy</td>
-                <td class="text text-primary">KItob olingan</td>
-                <td><a href="{{route('showborrower')}}" class="btn btn-outline-primary " >Ko'rish</a></td>
-            </tr>
-            <tr>
-                <td>Otajonov Alisher Muxtor o'g'li</td>
-                <td>942-20</td>
-                <td>Dasturlash asoslari Java</td>
-                <td>Adham Muzaffarov</td>
-                <td class="text text-primary">Kitob olingan</td>
-                <td><a href="{{route('showborrower')}}" class="btn btn-outline-primary " >Ko'rish</a></td>
-            </tr>
-            <tr>
-                <td>Otajonov Alisher Muxtor o'g'li</td>
-                <td>942-20</td>
-                <td>Dasturlash asoslari Java</td>
-                <td>Adham Muzaffarov</td>
-                <td class="text text-success">KItob qaytarilgan</td>
-                <td><a href="{{route('showborrower')}}" class="btn btn-outline-primary " >Ko'rish</a></td>
-            </tr>
+            @empty
+                <h1 class="text text-success"> Hozircha ma'lumot yo'q </h1>
+            @endforelse
+
 
 
 

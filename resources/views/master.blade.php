@@ -9,11 +9,11 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-    <title>@yield('title')</title>
+    <title>Kutubxona</title>
 </head>
 <body>
 {{--    Navbar boshlandi --}}
-<nav class="navbar navbar-expand-lg navbar-light border-bottom border-primary " style="box-shadow: 0px 0px 5px 5px #929ff3; background-color: #f0f3f4">
+<nav class="navbar navbar-expand-lg navbar-light  " style="background: #07294d;; box-shadow: 0px 0px 5px 5px #07294d;">
     <a class="navbar-brand m-2 mb-0 mt-0" href="{{url('/')}}"><img class="card-img" style="height:50px" src="https://i.pinimg.com/736x/a7/91/0c/a7910cf32f182c9ea34022abb7839980--library-logo-library-design.jpg" alt=""></a>
 
 
@@ -59,13 +59,15 @@
 <div class="container pt-3 " style="background-color: #f0f3f4">
 
 
-
+<div style="min-height: 400px; margin-top: 4%;">
     @yield('content')
+</div>
     <div style="height: 40px"></div>
 </div>
 
-<footer style="width: 100%; height: 200px; background-color: #4a5568">
-<h1 class="text text-primary"> Footer qismi</h1>
+<footer >
+    <div class="w-100  mt-5" style="height: 100px; background: #07294d;; box-shadow: 0px 0px 5px 5px #07294d;">
+    </div>
 </footer>
 <!-- JavaScript Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>

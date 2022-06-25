@@ -9,11 +9,69 @@ use App\Models\KitobTuri;
 use App\Models\Muallif;
 use App\Models\Nashriyot;
 use App\Models\Sarlavha;
+use App\Models\Student;
+use App\Models\Tarix;
+use App\Models\User;
 use App\Models\Viloyat;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
+    public function kitob_izlash(Request $request){
+        $sarlavha=$request->sarlavha;
+        $muallif=$request->muallif;
+
+        if($sarlavha!="" ){
+
+            $s=Sarlavha::where('sarlavha','like','%'.$sarlavha.'%')->get();
+        } else{
+            $s=[];
+        }
+        if($muallif != ""){
+
+            $m=Muallif::where('muallif','like','%'.$muallif.'%')->get();
+        }else{
+            $m=[];
+        }
+
+        if(count($s)>0 && count($m)>0){
+            $data=[];
+          foreach ($s as $sarlavha){
+              foreach ($m as $muallif){
+                  $data[]=Kitob::where('muallif_id',$muallif->id)->orWhere('sarlavha_id',$sarlavha->id)->get();
+              }
+          }
+        }
+        elseif (count($s)>0){
+            $data=[];
+            foreach ($s as $sarlavha) {
+                $data[] = Kitob::where('sarlavha_id',$sarlavha->id)->get();}
+        }elseif (count($m)>0){
+$data=[];
+            foreach ($m as $muallif) {
+
+                $data[]=Kitob::where('sarlavha_id',$muallif->id)->get();}
+        }
+        else{
+            $data=null;
+        }
+
+        return view('borrow',['data'=>$data]);
+
+    }
+    public function login_2(){
+        return view('login');
+    }
+    public function login_1(Request $request){
+        if($request->login=="kutubxonachi" && $request->parol=="parol12345"){
+            return redirect()->route('booklist');
+        }
+        else{
+            return redirect()->back()->withErrors('Xato');
+        }
+
+    }
     public function delete_gr($id){
         $gr=Guruh::find($id);
         $gr->delete();
@@ -181,6 +239,26 @@ class HomeController extends Controller
     public function home(){
         return view('home');
     }
+    public function sarala(Request $request){
+        $sana=$request->sana;
+        $tarix=Tarix::where('sana',$sana)->get();
+        return view('statistika',[
+            'sana'=>$sana,
+            'data'=>$tarix
+        ]);
+    }
+    public function qaytdi($id){
+        $book=Kitob::find($id);
+        $t=new Tarix();
+        $t->kitob_id=$id;
+        $t->student_id=$book->holati;
+        $t->holat=1;
+        $t->sana=Carbon::now();
+        $t->save();
+        $book->holati=0;
+        $book->save();
+        return redirect('/booklist')->with('message', 'Kitob muvaffaqqiyatli qaytarildi !');
+    }
     public function foydalanuvchilar(){
         return view('foydalanuvchilar');
     }
@@ -190,25 +268,68 @@ class HomeController extends Controller
         return view('useradd',['viloyat'=>$vil,'guruh'=>$guruh]);
     }
     public function register(Request$request){
-        dd($request);
+        $s=new Student();
+        $s->ism=$request->ism;
+        $s->familya=$request->familya;
+        $s->otasining_ismi=$request->otasining_ismi;
+        $s->telefon=$request->telefon;
+        $s->guruh_id=$request->guruh;
+        $s->viloyat_id=$request->viloyat;
+        $s->tuman_id=$request->tuman;
+        $s->save();
+        return redirect('/');
     }
     public function add(){
         return view('add');
     }
     public function borrow(){
-        return view('borrow');
+        $data=null;
+        return view('borrow',['data'=>$data]);
     }
-    public function confirmborrow(){
-        return view('confirmborrow');
+    public function confirmborrow($id){
+        $book=Kitob::find($id);
+        $guruh=Guruh::all();
+        $student=Student::all();
+        return view('confirmborrow',['book'=>$book,
+            'guruh'=>$guruh,
+            'student'=>$student]);
     }
-    public function showborrower(){
-        return view('showborrower');
+    public function zzz(Request $request){
+        $book=Kitob::find($request->id);
+        $book->holati=$request->student_id;
+        $book->olgan=$request->olgan;
+        $book->berish=$request->berish;
+        $book->save();
+        $t=new Tarix();
+        $t->kitob_id=$book->id;
+        $t->student_id=$book->holati;
+        $t->holat=0;
+        $t->sana=Carbon::now();
+        $t->save();
+
+        return redirect('/booklist')->with('message', 'Kitob muvaffaqqiyatli berildi !');
+    }
+    public function showborrower($id){
+        $data=Kitob::find($id);
+
+
+        return view('showborrower',[
+            'data'=>$data
+        ]);
     }
     public function muddat(){
-        return view('muddat');
+        $sana=Carbon::now();
+        $kitoblar=Kitob::where('berish','<',$sana)->where('holati','>',0)->get();
+
+        return view('muddat',['kitoblar'=>$kitoblar,]);
     }
     public function statistika(){
-        return view('statistika');
+        $data=Tarix::all();
+
+        return view('statistika',
+        [
+            'data'=>$data
+        ]);
     }
     public function add_books(Request $request){
         $kitob=new Kitob();

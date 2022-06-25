@@ -37,7 +37,7 @@
             </tr>
             <tr>
                 <th>Holati</th>
-                <td>@if($book->holati==1)
+                <td>@if($book->holati==0)
                         Kutubxonada
                     @else
                         O'qilmoqda

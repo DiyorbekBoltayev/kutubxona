@@ -4,41 +4,77 @@
     <div>
         <table class="table table-striped">
             <tr>
-                <th>Mahalliy id</th>
-                <td>1111</td>
-            </tr><tr>
-                <th>Sarlavha</th>
-                <td>Hamsa</td>
-            </tr><tr>
-                <th>Muallif</th>
-                <td>Alisher Navoiy</td>
-            </tr><tr>
-                <th>Kitob turi</th>
-                <td>Badiiy</td>
-            </tr><tr>
-                <th>Joylashuvi</th>
-                <td>2-javon</td>
-            </tr><tr>
-                <th>Nashriyot</th>
-                <td>Diyor print</td>
-            </tr><tr>
-                <th>Nashr qilngan yili</th>
-                <td>2027</td>
+                <th>Local_id </th>
+                <td>{{$book->local_id}}</td>
             </tr>
+            <tr>
+                <th> Kitob sarlavhasi </th>
+                <td>{{$book->sarlavha->sarlavha}}</td>
+            </tr>
+            <tr>
+                <th>Kitob muallifi</th>
+                <td>{{$book->muallif->muallif}}</td>
+            </tr>
+            <tr>
+                <th>Kitob turi</th>
+                <td>{{$book->turi->kitob_turi}}</td>
+            </tr>
+            <tr>
+                <th>Yili</th>
+                <td>{{$book->yili}}</td>
+            </tr>
+            <tr>
+                <th>Joylashgan javon</th>
+                <td>{{$book->javon->javon}}</td>
+            </tr>
+            <tr>
+                <th>Nashriyot</th>
+                <td>{{$book->nashriyot->nashriyot}}</td>
+            </tr>
+            <tr>
+                <th>Izoh</th>
+                <td>{{$book->izoh}}</td>
+            </tr>
+
+
+
+
 
         </table>
 
-        <form action="">
 
-            <div class="form-floating mb-3">
-                <input type="" name="muallif" class="form-control" id="muallif"  autocomplete="off"   required placeholder="name@example.com">
-                <label for="muallif">Fozdalanuvchi guruhini kiritish</label>
-                <div id="mualliflist" > </div>
+    </div>
+
+
+
+        <form action="{{route('zzz')}}" method="post">
+@csrf
+            <input type="hidden" name="id" value="{{$book->id}}">
+         <div class="form-floating mb-3">
+                <select class="form-select" name="guruh_id" id="guruh" required aria-label="Default select example">
+                    <option value="" selected disabled>Guruhni tanlang</option>
+                    @foreach($guruh as $g)
+                        <option value="{{$g->id}}">{{$g->guruh}}</option>
+                    @endforeach
+                </select>
+                <label for="guruh">Guruh</label>
+            </div>
+         <div class="form-floating mb-3">
+                <select class="form-select" name="student_id" id="guruh" required aria-label="Default select example">
+                    <option value="" selected disabled>Kitobxonni tanlang</option>
+                    @foreach($student as $g)
+                        <option value="{{$g->id}}">{{$g->ism}} {{$g->familya}}</option>
+                    @endforeach
+                </select>
+                <label for="guruh">Kitobxon</label>
             </div>
             <div class="form-floating mb-3">
-            <input type="" name="muallif" class="form-control" id="muallif"  autocomplete="off"   required placeholder="name@example.com">
-            <label for="muallif">Fozdalanuvchini kiritish</label>
-            <div id="mualliflist" > </div>
+                <input type="date" name="olgan" required class="form-control">
+                <label for="guruh">Olgan sanasi</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input type="date" name="berish" required class="form-control">
+                <label for="guruh">Berish sanasi</label>
             </div>
             <input type="submit" name="submit" class="form-control btn-outline-success" value="Barcha ma'lumotlarni saqlash" >
 

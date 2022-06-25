@@ -21,11 +21,15 @@ Route::get('/home',[HomeController::class,'home'])->name('home');
 Route::get('/add',[HomeController::class,'add'])->name('addbook');
 Route::post('/add',[HomeController::class,'add_books'])->name('add_books');
 Route::get('/borrow',[HomeController::class,'borrow'])->name('borrowbook');
-Route::get('/confirmborrow',[HomeController::class,'confirmborrow'])->name('confirmborrow');
-Route::get('/showborrower',[HomeController::class,'showborrower'])->name('showborrower');
+Route::get('/confirmborrow/{id}',[HomeController::class,'confirmborrow'])->name('confirmborrow');
+Route::get('/showborrower/{id}',[HomeController::class,'showborrower'])->name('showborrower');
+Route::post('borrow',[HomeController::class,'zzz'])->name('zzz');
 Route::get('/muddat',[HomeController::class,'muddat'])->name('muddat');
 Route::get('/statistika',[HomeController::class,'statistika'])->name('statistika');
 Route::get('/foydalanuvchilar',[HomeController::class,'foydalanuvchilar'])->name('foydalanuvchilar');
+
+Route::get('qaytdi/{id}',[HomeController::class,'qaytdi'])->name('qaytdi');
+Route::post('sarala',[HomeController::class,'sarala'])->name('sarala');
 
 Route::get('/booklist',[HomeController::class,'list'])->name('booklist');
 Route::get('singlebook/{id}',[HomeController::class,'singlebook'])->name('singlebook');
@@ -39,6 +43,11 @@ Route::get('list_gr',[HomeController::class,'list_gr'])->name('list_gr');
 Route::get('edit_gr/{id}',[HomeController::class,'edit_gr'])->name('edit_gr');
 Route::get('delete_gr/{id}',[HomeController::class,'delete_gr'])->name('delete_gr');
 Route::post('update_gr',[HomeController::class,'update_gr'])->name('update_gr');
+
+Route::post('login_1',[HomeController::class,'login_1'])->name('login_1');
+Route::get('login_1',[HomeController::class,'login_2'])->name('login_2');
+
+Route::post('kutob_izlash',[HomeController::class,'kitob_izlash'])->name('kitob_izla');
 
 Route::post('/autonashriyot',[\App\Http\Controllers\AutoSearchController::class,'nashriyot'])->name('nashriyotauto');
 Route::post('/automuallif',[\App\Http\Controllers\AutoSearchController::class,'muallif'])->name('muallifauto');

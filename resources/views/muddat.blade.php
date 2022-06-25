@@ -14,78 +14,23 @@
                 <th>Amal</th>
 
             </tr>
+            @forelse($kitoblar as $kitob)
             <tr>
-                <td>Otajonov Alisher Muxtor o'g'li</td>
-                <td>942-20</td>
-                <td>Xamsa</td>
-                <td>Alisher Navoiy</td>
-                <td class="text text-danger">20 Apr 2022</td>
-                <td><a href="{{route('showborrower')}}" class="btn btn-outline-primary " >Ko'rish</a></td>
+                <td>{{$kitob->holatim->ism}} {{$kitob->holatim->familya}} {{$kitob->holatim->otasining_ismi}}</td>
+                <td>{{$kitob->holatim->guruh->guruh}}</td>
+                <td>{{$kitob->sarlavha->sarlavha}}</td>
+                <td>{{$kitob->muallif->muallif}}</td>
+                <td class="text text-danger">{{$kitob->berish}}</td>
+                <td><a href="{{route('showborrower',$kitob->holati)}}" class="btn btn-outline-primary " >Ko'rish</a></td>
             </tr>
-            <tr>
-                <td>Ruzimov Jasurbek Oybek o'g'li</td>
-                <td>942-20</td>
-                <td>Xamsa</td>
-                <td>Alisher Navoiy</td>
-                <td class="text text-danger">20 Apr 2022</td>
-                <td><a href="{{route('showborrower')}}" class="btn btn-outline-primary " >Ko'rish</a></td>
-            </tr>
-            <tr>
-                <td>Boltayev Diyorbek Tajimurat o'g'li</td>
-                <td>942-20</td>
-                <td>Xamsa</td>
-                <td>Alisher Navoiy</td>
-                <td class="text text-danger">20 Apr 2022</td>
-                <td><a href="{{route('showborrower')}}" class="btn btn-outline-primary " >Ko'rish</a></td>
-            </tr>
-            <tr>
-                <td>Xo'janiyozov Fayzulla Maqsud o'g'li</td>
-                <td>942-20</td>
-                <td>Xamsa</td>
-                <td>Alisher Navoiy</td>
-                <td class="text text-danger">20 Apr 2022</td>
-                <td><a href="{{route('showborrower')}}" class="btn btn-outline-primary " >Ko'rish</a></td>
-            </tr>
-            <tr>
-                <td>Otajonov Alisher Muxtor o'g'li</td>
-                <td>942-20</td>
-                <td>Xamsa</td>
-                <td>Alisher Navoiy</td>
-                <td class="text text-danger">20 Apr 2022</td>
-                <td><a href="{{route('showborrower')}}" class="btn btn-outline-primary " >Ko'rish</a></td>
-            </tr>
-            <tr>
-                <td>Otajonov Alisher Muxtor o'g'li</td>
-                <td>942-20</td>
-                <td>Xamsa</td>
-                <td>Alisher Navoiy</td>
-                <td class="text text-danger">20 Apr 2022</td>
-                <td><a href="{{route('showborrower')}}" class="btn btn-outline-primary " >Ko'rish</a></td>
-            </tr>
-            <tr>
-                <td>Otajonov Alisher Muxtor o'g'li</td>
-                <td>942-20</td>
-                <td>Xamsa</td>
-                <td>Alisher Navoiy</td>
-                <td class="text text-danger">20 Apr 2022</td>
-                <td><a href="{{route('showborrower')}}" class="btn btn-outline-primary " >Ko'rish</a></td>
-            </tr>
-            <tr>
-                <td>Otajonov Alisher Muxtor o'g'li</td>
-                <td>942-20</td>
-                <td>Xamsa</td>
-                <td>Alisher Navoiy</td>
-                <td class="text text-danger">20 Apr 2022</td>
-                <td><a href="{{route('showborrower')}}" class="btn btn-outline-primary " >Ko'rish</a></td>
-            </tr>
-            <tr>
-                <td>Otajonov Alisher Muxtor o'g'li</td>
-                <td>942-20</td>
-                <td>Xamsa</td>
-                <td>Alisher Navoiy</td>
-                <td class="text text-danger">20 Apr 2022</td>
-                <td><a href="{{route('showborrower')}}" class="btn btn-outline-primary " >Ko'rish</a></td>
-            </tr>
+            @empty
+                    <tr>
+                        <td>
+                            <h1 class="text text-success"> Muddati o'tgan kitoblar yo'q</h1>
+                        </td>
+                    </tr>
+                    @endforelse
+
 
 
         </table>

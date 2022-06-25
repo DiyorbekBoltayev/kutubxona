@@ -5,31 +5,37 @@
         <table class="table table-striped">
             <tr>
                 <th>Foydalanuvchi </th>
-                <td>Otajonov Alisher Muxtor o'gli</td>
+                <td>{{$data->holatim->ism}} {{$data->holatim->familya}} {{$data->holatim->otasining_ismi}}</td>
             </tr>
             <tr>
                 <th>Foydalanuvchi guruhi</th>
-                <td>942-20</td>
+                <td>{{$data->holatim->guruh->guruh}}</td>
             </tr>
             <tr>
                 <th>Telefon raqami</th>
-                <td>+998 99 676 19 36</td>
+                <td>{{$data->holatim->telefon}}</td>
             </tr>
             <tr>
                 <th>Sarlavha</th>
-                <td>Hamsa</td>
+                <td>{{$data->sarlavha->sarlavha}}</td>
             </tr>
             <tr>
                 <th>Muallif</th>
-                <td>Alisher Navoiy</td>
+                <td>{{$data->muallif->muallif}}</td>
             </tr>
             <tr>
                 <th>Kitobni olgan vaqti</th>
-                <td>17 Mar 2022</td>
+                <td>{{$data->olgan}}</td>
             </tr>
             <tr>
                 <th>Kitobni qaytarish vaqti</th>
-                <td>20 May 2022</td>
+                <td>{{$data->berish}}</td>
+            </tr>
+            <tr>
+
+                <td>
+                <a href="{{route('qaytdi',$data->id)}}" class="btn btn-outline-danger"> Kitob qaytarildi</a>
+                </td>
             </tr>
 
 
