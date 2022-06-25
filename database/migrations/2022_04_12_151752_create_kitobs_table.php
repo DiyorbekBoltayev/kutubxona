@@ -22,7 +22,7 @@ return new class extends Migration
             $table->integer('kitob_turi_id');
             $table->integer('javon_id');
             $table->integer('nashriyot_id');
-            $table->text('izoh')->default('Izohlar');
+            $table->text('izoh')->nullable();
             $table->integer('holati')->default(0);
             $table->date('olgan')->nullable();
             $table->date('berish')->nullable();
