@@ -37,6 +37,7 @@ Route::get('editbook/{id}',[HomeController::class,'editbook'])->name('editbook')
 Route::post('editbook',[HomeController::class,'save_edit'])->name('save_edit');
 Route::get('deletebook/{id}',[HomeController::class,'deletebook'])->name('deletebook');
 
+Route::get('gr_single/{id}',[HomeController::class,'gr_single'])->name('gr_single');
 Route::get('groupadd',[HomeController::class,'add_gr'])->name('add_gr');
 Route::post('groupadd',[HomeController::class,'saqla_gr'])->name('saqla_gr');
 Route::get('list_gr',[HomeController::class,'list_gr'])->name('list_gr');

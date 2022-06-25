@@ -39,19 +39,19 @@ class HomeController extends Controller
             $data=[];
           foreach ($s as $sarlavha){
               foreach ($m as $muallif){
-                  $data[]=Kitob::where('muallif_id',$muallif->id)->orWhere('sarlavha_id',$sarlavha->id)->get();
+                  $data[]=Kitob::where('muallif_id',$muallif->id)->orWhere('sarlavha_id',$sarlavha->id)->where('delete',0)->get();
               }
           }
         }
         elseif (count($s)>0){
             $data=[];
             foreach ($s as $sarlavha) {
-                $data[] = Kitob::where('sarlavha_id',$sarlavha->id)->get();}
+                $data[] = Kitob::where('sarlavha_id',$sarlavha->id)->where('delete',0)->get();}
         }elseif (count($m)>0){
 $data=[];
             foreach ($m as $muallif) {
 
-                $data[]=Kitob::where('sarlavha_id',$muallif->id)->get();}
+                $data[]=Kitob::where('sarlavha_id',$muallif->id)->where('delete',0)->get();}
         }
         else{
             $data=null;
@@ -74,8 +74,13 @@ $data=[];
     }
     public function delete_gr($id){
         $gr=Guruh::find($id);
-        $gr->delete();
+        $gr->delete=1;
+        $gr->save();
         return redirect('/list_gr')->with('message', 'Guruh muvaffaqqiyatli o\'chirildi !');
+    }
+    public function gr_single($id){
+        $data=Student::all()->where('guruh_id',$id);
+        return view('gr_single',['data'=>$data]);
     }
     public function add_gr(){
         return view('guruhadd');
@@ -118,7 +123,8 @@ $data=[];
     }
     public function deletebook($id){
         $book=Kitob::find($id);
-        $book->delete();
+        $book->delete=1;
+        $book->save();
         return redirect('/booklist')->with('message', 'Kitob muvaffaqqiyatli o\'chirildi !');
 
 
@@ -267,7 +273,16 @@ $data=[];
         $guruh=Guruh::all();
         return view('useradd',['viloyat'=>$vil,'guruh'=>$guruh]);
     }
-    public function register(Request$request){
+    public function register(Request $request){
+        $data=Student::all()
+            ->where('ism',$request->ism)
+            ->where('familya',$request->familya)
+            ->where('otasining_ismi',$request->otasining_ismi)
+            ->where('guruh_id',$request->guruh);
+        if(count($data)>0){
+
+            return redirect()->back()->withErrors('xato');
+        }
         $s=new Student();
         $s->ism=$request->ism;
         $s->familya=$request->familya;
@@ -277,7 +292,8 @@ $data=[];
         $s->viloyat_id=1;
         $s->tuman_id=1;
         $s->save();
-        return redirect('/');
+
+        return redirect('/')->with('message1', 'Ma\'lumotlar muvaffaqqiyatli saqlandi !');
     }
     public function add(){
         return view('add');
@@ -332,6 +348,10 @@ $data=[];
         ]);
     }
     public function add_books(Request $request){
+        $tml=Kitob::all()->where('local_id',$request->mahalliy_id)->where('delete',0);
+        if(count($tml)>0){
+            return  redirect()->back()->withErrors('xato');
+        }
         $kitob=new Kitob();
         $kitob->local_id=$request->mahalliy_id;
         echo "mahalliy id yozildi <br>";

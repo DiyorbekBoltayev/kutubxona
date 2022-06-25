@@ -17,8 +17,25 @@
     <h3 class="text-white">Kutubxonadan foydalanish uchun ro'yhatdan o'tish sahifasi</h3>
     <a class="btn btn-outline-warning" href="/login_1">Kutubxonachi sifatida kirish</a> </div>
 <div class="container mt-2" style="background: #ebefeb; box-shadow: 0px 5px 5px 5px #ebefeb">
+    @if($errors->any())
+    <div class="text-danger w-100 d-flex align-items-center justify-content-center mb-3 mt-3 " style=" border-radius: 10px;background: #f19191;height: 60px;" >
+        <h2>Bunday foydalanuvchi oldin ro'yhatdan o'tkazilgan</h2>
+    </div>
+    @else
     <h1 class="text-primary">Ma'lumotlarni kiriting</h1>
+    @endif
+
+        @if (session()->has('message1'))
+            <div id="mes1" class="alert alert-dismissable alert-success" >
+
+                <strong>
+                    {!! session()->get('message1') !!}
+                </strong>
+            </div>
+        @endif
+
     <div>
+
         <form action="{{route('registeruser')}}" method="post">
             {{csrf_field()}}
             <div class="form-floating mb-3">
@@ -47,6 +64,7 @@
                 <select class="form-select" name="guruh" id="guruh" required aria-label="Default select example">
                     <option value="" selected disabled>Guruhni tanlang</option>
                     @foreach($guruh as $g)
+                        @if($g->delete==1) @continue @endif
                         <option value="{{$g->id}}">{{$g->guruh}}</option>
                     @endforeach
                 </select>

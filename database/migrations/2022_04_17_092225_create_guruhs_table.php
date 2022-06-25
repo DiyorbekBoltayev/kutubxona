@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('guruhs', function (Blueprint $table) {
             $table->id();
             $table->string('guruh');
+            $table->integer('delete')->default(0);
             $table->timestamps();
 
         });

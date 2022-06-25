@@ -24,6 +24,7 @@
 
             </tr>
             @foreach($books as $book)
+                @if($book->delete==1) @continue @endif
             <tr>
                 <td>{{$book->id}}</td>
                 <td>{{$book->local_id}}</td>

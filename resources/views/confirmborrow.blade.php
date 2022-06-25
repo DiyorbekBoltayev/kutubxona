@@ -54,6 +54,7 @@
                 <select class="form-select" name="guruh_id" id="guruh" required aria-label="Default select example">
                     <option value="" selected disabled>Guruhni tanlang</option>
                     @foreach($guruh as $g)
+                        @if($g->delete==1) @continue @endif
                         <option value="{{$g->id}}">{{$g->guruh}}</option>
                     @endforeach
                 </select>
@@ -63,6 +64,7 @@
                 <select class="form-select" name="student_id" id="student" required aria-label="Default select example">
                     <option value="" selected disabled>Kitobxonni tanlang</option>
                     @foreach($student as $g)
+
                         <option value="{{$g->id}}">{{$g->ism}} {{$g->familya}}</option>
                     @endforeach
                 </select>

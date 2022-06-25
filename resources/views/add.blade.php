@@ -2,7 +2,14 @@
 @section('title','Kitob qo\'shish')
 @section('content')
     <div class="container">
-        <h1 class="text text-primary text-center">Yangi kitob ma'lumotlarini kiriting</h1>
+
+        @if($errors->any())
+            <div class="text-danger w-100 d-flex align-items-center justify-content-center mb-3 mt-3 " style=" border-radius: 10px;background: #f19191;height: 60px;" >
+                <h2>Bunday Mahalliy id oldin foydalanilgan</h2>
+            </div>
+        @else
+            <h1 class="text text-primary text-center">Yangi kitob ma'lumotlarini kiriting</h1>
+        @endif
         @if (session()->has('message'))
             <div id="mes1" class="alert alert-dismissable alert-success" >
 

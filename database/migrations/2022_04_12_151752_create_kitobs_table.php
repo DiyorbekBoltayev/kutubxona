@@ -26,6 +26,7 @@ return new class extends Migration
             $table->integer('holati')->default(0);
             $table->date('olgan')->nullable();
             $table->date('berish')->nullable();
+            $table->integer('delete')->default(0);
             $table->timestamps();
         });
     }
