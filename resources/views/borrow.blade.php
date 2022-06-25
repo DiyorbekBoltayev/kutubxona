@@ -56,7 +56,7 @@
                             @if($d->holati==0)
                                 <a href="{{route('confirmborrow',$d->id)}}" class="btn btn-primary" >Berish </a>
                             @else
-                                <a href="{{route('showborrower',$d->holati)}}" class="btn btn-secondary " >Ko'rish </a>
+                                <a href="{{route('showborrower',$d->id)}}" class="btn btn-secondary " >Ko'rish </a>
                             @endif
                         </td>
                         <td></td>
