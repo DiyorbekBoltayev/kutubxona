@@ -274,8 +274,8 @@ $data=[];
         $s->otasining_ismi=$request->otasining_ismi;
         $s->telefon=$request->telefon;
         $s->guruh_id=$request->guruh;
-        $s->viloyat_id=$request->viloyat;
-        $s->tuman_id=$request->tuman;
+        $s->viloyat_id=1;
+        $s->tuman_id=1;
         $s->save();
         return redirect('/');
     }

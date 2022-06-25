@@ -61,22 +61,7 @@
                 </select>
                 <label for="jins">Jinsi</label>
             </div>
-            <div class="form-floating mb-3">
-            <select class="form-select" name="viloyat" id="viloyat" required aria-label="Default select example">
-                <option value="" selected disabled>Ro'yhatda turgan viloyatingizni tanlang</option>
-                @foreach($viloyat as $vil)
-                    <option value="{{$vil->id}}">{{$vil->viloyat}}</option>
-                @endforeach
-            </select>
-                <label for="viloyat">Viloyat</label>
-            </div>
-            <div class="form-floating mb-3">
-                <select class="form-select"id="tuman" name="tuman" required aria-label="Default select example">
-                    <option value="" selected disabled>Tumanni tanlang</option>
 
-                </select>
-                <label for="tuman">Tuman</label>
-            </div>
             <input type="submit" class="btn btn-outline-success w-100" value="Ro'yhatdan o'tish">
         </form>
 

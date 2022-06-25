@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('tumen', function (Blueprint $table) {
             $table->id();
-            $table->string('tuman');
-            $table->integer('viloyat_id');
+            $table->string('tuman')->default(1);
+            $table->integer('viloyat_id')->default(1);
 
         });
     }

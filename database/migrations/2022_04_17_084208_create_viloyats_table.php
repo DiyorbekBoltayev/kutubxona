@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('viloyats', function (Blueprint $table) {
             $table->id();
-            $table->string('viloyat');
+            $table->string('viloyat')->default(1);
 
         });
     }

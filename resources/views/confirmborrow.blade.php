@@ -60,7 +60,7 @@
                 <label for="guruh">Guruh</label>
             </div>
          <div class="form-floating mb-3">
-                <select class="form-select" name="student_id" id="guruh" required aria-label="Default select example">
+                <select class="form-select" name="student_id" id="student" required aria-label="Default select example">
                     <option value="" selected disabled>Kitobxonni tanlang</option>
                     @foreach($student as $g)
                         <option value="{{$g->id}}">{{$g->ism}} {{$g->familya}}</option>
@@ -80,4 +80,21 @@
 
         </form>
     </div>
+    <script>
+        let rooms = @json($guruh);
+        let students = @json($student);
+        $('#guruh').on('change', function () {
+            var value = $(this).val();
+            $('#student').empty();
+            $('#student').append("<option value='none'>Tanlang</option>")
+            for (let i = 0; i < students.length; i++) {
+                if (value == students[i].guruh_id) {
+                    var option = document.createElement("option");   // Create with DOM
+                    option.innerHTML = students[i].ism+students[i].familya+students[i].otasining_ismi;
+                    option.value = students[i].id;
+                    $('#student').append(option);
+                }
+            }
+        });
+    </script>
 @endsection
